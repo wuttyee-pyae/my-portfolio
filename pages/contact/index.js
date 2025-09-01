@@ -1,13 +1,26 @@
 import Circles from '../../components/Circles';
+import Bulb from "../../components/Bulb";
 import { BsArrowRight } from 'react-icons/bs';
 
 import { motion } from 'framer-motion';
 
 import { fadeIn } from '../../variants';
+import { useState } from 'react';
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleMailtoClick = (e) => {
+    e.preventDefault();
+    const mailtoLink = `mailto:wuttyee1910@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Dear Wutt Yee Win, \n\n ${message}`)}`;
+    window.location.href = mailtoLink;
+  };
+
   return (
     <div className='h-full bg-primary/30' >
+      <Circles />
       <div className='container mx-auto py-32 text-center xl:text-left flex
       items-center justify-center h-full'>
         <div className='flex flex-col w-full max-w-[700px] '>
@@ -26,22 +39,23 @@ const Contact = () => {
             exit="hidden"
           className='flex-1 flex flex-col gap-6 w-full mx-auto'>
             <div className='flex gap-x-6 w-full'>
-              <input type='text' placeholder='name' className='input' />
-              <input type='email' placeholder='email' className='input' />
+              <input type='text' placeholder='name' className='input' value={name} onChange={(e) => setName(e.target.value)} />
+              {/* <input type='email' placeholder='email' className='input' /> */}
             </div>
-            <input type='text' placeholder='subject' className='input' />
-            <textarea className='textarea' placeholder='message'></textarea>
-            <button className='btn rounded-full border border-white/50 max-w-[170px]
+            <input type='text' placeholder='subject' className='input' value={subject} onChange={(e) => setSubject(e.target.value)} />
+            <textarea className='textarea' placeholder='message' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+            <a onClick={handleMailtoClick} className='btn rounded-full border border-white/50 max-w-[170px]
             px-8 transition-all duration-300 flex items-center justify-center 
             overflow-hidden hover:border-accent group'>
               <span className='group-hover:-translate-y-[120%] group-hover:opacity-0 transition-all duration-500 '>
                 Let's talk </span> 
               <BsArrowRight className='-translate-y-[120%] opacity-0 group-hover:flex group-hover:-translate-y-0
               group-hover:opacity-100 transition-all duration-300 absolute text-[22px]' />
-            </button>
+            </a>
           </motion.form>
         </div>
       </div>
+      <Bulb />
     </div>
   );
 };

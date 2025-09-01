@@ -31,7 +31,7 @@ export const aboutData = [
     title: 'skills',
     info: [
       {
-        title: 'Web Development',
+        title: 'Frontend Development',
         icons: [
           <FaHtml5 />,
           <FaCss3 />,
@@ -41,57 +41,89 @@ export const aboutData = [
           <SiFramer />,
           <FaWordpress />,
         ],
+        text: ['Angular, RxJS','Ionic ' , 'React , Nextjs' , 'Vuejs ' , 'HTML, CSS']
       },
       {
-        title: 'UI/UX Design',
+        title: 'Backend & ORM',
         icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        text: ['Java,J2EE, Spring Boot' , 'REST API Development']
+      },
+      {
+        title: 'Databases',
+        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        text: ['PostgreSQL, MySQL']
+      },
+      {
+        title: 'Version Control & CI/CD',
+        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        text: ['Git, SVN' , 'Jenkins']
+      },
+      {
+        title: 'Project Management Tools',
+        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        text: ['Java,J2EE, Spring Boot' , 'REST API Development']
       },
     ],
   },
-  {
-    title: 'awards',
-    info: [
-      {
-        title: 'Webby Awards - Honoree',
-        stage: '2011 - 2012',
-      },
-      {
-        title: 'Adobe Design Achievement Awards - Finalist',
-        stage: '2009 - 2010',
-      },
-    ],
-  },
+  // {
+  //   title: 'awards',
+  //   info: [
+  //     {
+  //       title: 'Webby Awards - Honoree',
+  //       stage: '2011 - 2012',
+  //     },
+  //     {
+  //       title: 'Adobe Design Achievement Awards - Finalist',
+  //       stage: '2009 - 2010',
+  //     },
+  //   ],
+  // },
   {
     title: 'experience',
     info: [
       {
-        title: 'UX/UI Designer - XYZ Company',
-        stage: '2012 - 2023',
+        title: 'Senior Frontend Developer - Ooredoo Myanmar',
+        stage: '2025 March – Present',
       },
       {
-        title: 'Web Developer - ABC Agency',
-        stage: '2010 - 2012',
+        title: 'Web Developer - Myanmar Software Integrated Solution',
+        stage: '2024 Sep – 2025 Feb',
       },
       {
-        title: 'Intern - DEF Corporation',
-        stage: '2008 - 2010',
+        title: 'Senior Front End Developer - Myanmar Media Linkage',
+        stage: '2023 Nov – 2024 March',
       },
+      {
+        title: 'Senior Front End Developer - BLUE STONE SOLUTION',
+        stage: '2023 Jan – 2023 Sep',
+      },
+      {
+        title: 'Senior Front End Developer - BLUE STONE SOLUTION',
+        stage: '2018 Feb -2021 Dec',
+      },
+      {
+        title: 'Junior Front End Developer - Meroventure Solution',
+        stage: '2017 May – 2018 Jan',
+      }
     ],
   },
   {
     title: 'credentials',
     info: [
       {
-        title: 'Web Development - ABC University, LA, CA',
-        stage: '2011',
+        title: 'Data Analyzing and Visualizing with Power BI',
+        name: 'Youth International College',
+        stage: '2020',
       },
       {
-        title: 'Computer Science Diploma - AV Technical Institute',
-        stage: '2009',
+        title: 'Professional Diploma in Software Engineering',
+        name: 'Information and Communication Technology Training Institute',
+        stage: '2016-2017',
       },
       {
-        title: 'Certified Graphic Designer - ABC Institute, Los Angeles, CA',
-        stage: '2006',
+        title: 'Bachelor of Engineering (Electronics & Communications)',
+        name: 'Government Thanlyin Technological University',
+        stage: '2010-2016',
       },
     ],
   },
@@ -110,7 +142,7 @@ const About = () => {
         animate="show"
         exit="hidden"
       >
-        <Avatar />
+        {/* <Avatar /> */}
       </motion.div>
       <div className='container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6'>
         {/* Text */}
@@ -120,7 +152,7 @@ const About = () => {
         initial="hidden"
         animate="show"
         exit="hidden">
-            Captivating <span className='text-accent'>stories</span> birth magnificient designs.
+            Wutt Yee Win <span className='text-accent text-md'>Frontend Developer</span>
           </motion.h2>
           <motion.p className='max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0'
           variants={fadeIn('right', 0.4)}
@@ -149,24 +181,38 @@ const About = () => {
                   after:left-0 `}
                   onClick={() => setIndex(itemIndex)}>
                   {item.title}
+                 
                 </div>
               )
             })}
           </div>
+          
           <div className='py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start'>
             {aboutData[index].info.map((info, infoIndex) => {
               return (
                 <div key={infoIndex}
-                className='flex-1 flex flex-col md:flex-row max-w-max gap-x-2
-                items-center text-white/60' >
-                  <div className='font-light mb-2 md:mb-0'>{info.title}</div>
-                  <div className='hidden md:flex'>-</div>
-                  <div>{info.stage}</div>
-                  <div className='flex gap-x-4'>
-                    { info.icons && info.icons.map((icon, iconIndex) => {
+                className='items-center text-white/60' >
+                  {/* flex-1 flex flex-row md:flex-row max-w-max gap-x-2 */}
+                  <div className='font-light md:mb-0'>{info.title}</div>
+                  {
+                    info.name &&  (
+                      <div className='items-center text-white/60' >
+                        <li>{info.name}</li> 
+                      </div>
+                    )
+                  }
+                  {
+                    info.stage && (
+                      <div className='items-center text-white/60' >
+                        <li>{info.stage}</li>
+                      </div>
+                    )
+                  }
+                  <div className=' gap-y-4'>
+                    { info.text && info.text.map((text, iconIndex) => {
                       return (
-                        <div key={iconIndex} className='text-2xl text-white'>
-                          {icon}
+                        <div key={iconIndex} className='text-sm text-white'>
+                         <li>{text}</li> 
                         </div>
                       )
                     })
@@ -179,16 +225,16 @@ const About = () => {
         </motion.div>
              </div>
         {/* counter  */}
-        <motion.div className='container mx-auto mt-12 xl:mt-6'
+        {/* <motion.div className='container mx-auto mt-12 xl:mt-6'
         variants={fadeIn('right', 0.6)}
         initial="hidden"
         animate="show"
-        exit="hidden">
+        exit="hidden"> */}
          {/* hidden md:flex md:max-w-xl xl:max-w-none mx-auto xl:mx-0
         mb-8  */}
-          <div className='flex flex-1 xl:gap-x-6'>
+          {/* <div className='flex flex-1 xl:gap-x-6'> */}
             {/* experice */}
-            <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10
+            {/* <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10
             after:absolute after:top-0 after:right-0'>
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={7} duration={5} /> +
@@ -196,9 +242,9 @@ const About = () => {
               <div className='text-sm uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>
                 Years of experice
               </div>
-            </div>
+            </div> */}
             {/* clients */}
-            <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10
+            {/* <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10
             after:absolute after:top-0 after:right-0'>
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={250} duration={5} /> +
@@ -206,9 +252,9 @@ const About = () => {
               <div className='text-sm uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>
                 Satisfied clients
               </div>
-            </div>
+            </div> */}
             {/* project */}
-            <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10
+            {/* <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10
             after:absolute after:top-0 after:right-0'>
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={650} duration={5} /> +
@@ -216,9 +262,9 @@ const About = () => {
               <div className='text-sm uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>
                 Finished projects
               </div>
-            </div>
+            </div> */}
             {/* awards */}
-            <div className='relative flex-1 '>
+            {/* <div className='relative flex-1 '>
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={8} duration={5} /> +
               </div>
@@ -228,7 +274,7 @@ const About = () => {
             </div>
 
           </div>
-        </motion.div>c
+        </motion.div> */}
      
     </div>
   );
