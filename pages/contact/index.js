@@ -12,35 +12,10 @@ const Contact = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleMailtoClick = (e) => {
     e.preventDefault();
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, subject, message }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        console.log('Email sent successfully:', data.message);
-        // Optionally clear the form after successful submission
-        setName('');
-        setSubject('');
-        setMessage('');
-        alert('Your message has been sent!');
-      } else {
-        console.error('Error sending email:', data.message);
-        alert(`Failed to send message: ${data.message}`);
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('An unexpected error occurred. Please try again later.');
-    }
+    const mailtoLink = `mailto:wuttyee1910@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\n\nMessage: ${message}`)}`;
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -69,14 +44,14 @@ const Contact = () => {
             </div>
             <input type='text' placeholder='subject' className='input' value={subject} onChange={(e) => setSubject(e.target.value)} />
             <textarea className='textarea' placeholder='message' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-            <button type="submit" onClick={handleSubmit} className='btn rounded-full border border-white/50 max-w-[170px]
+            <a onClick={handleMailtoClick} className='btn rounded-full border border-white/50 max-w-[170px]
             px-8 transition-all duration-300 flex items-center justify-center 
             overflow-hidden hover:border-accent group'>
               <span className='group-hover:-translate-y-[120%] group-hover:opacity-0 transition-all duration-500 '>
                 Let&apos;s talk </span> 
               <BsArrowRight className='-translate-y-[120%] opacity-0 group-hover:flex group-hover:-translate-y-0
               group-hover:opacity-100 transition-all duration-300 absolute text-[22px]' />
-            </button>
+            </a>
           </motion.form>
         </div>
       </div>
