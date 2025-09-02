@@ -119,7 +119,7 @@ export const aboutData = [
         title: 'Professional Diploma in Software Engineering',
         name: 'Information and Communication Technology Training Institute',
         stage: '2016-2017',
-      },
+        },
       {
         title: 'Bachelor of Engineering (Electronics & Communications)',
         name: 'Government Thanlyin Technological University',
@@ -134,7 +134,10 @@ const About = () => {
   const [index, setIndex] = useState(0);
   return (
     <div className='h-full bg-primary/30 py-32 text-center xl:text-left'>
+      <div className='hidden lg:flex'>
       <Circle />
+      </div>
+      
 
       <motion.div className='hidden lg:flex absolute bottom-0 -left-[180px]'
         variants={fadeIn('right', 0.2)}
@@ -167,7 +170,7 @@ const About = () => {
           </motion.p>
         </div>
         {/* Info */}
-        <motion.div className='flex flex-col w-full xl:max-w-[48%] h-[480px]'
+        <motion.div className='flex flex-col w-full xl:max-w-[48%] h-[600px] pb-[100px]'
         variants={fadeIn('left', 0.4)}
         initial="hidden"
         animate="show"
