@@ -33,34 +33,34 @@ export const aboutData = [
       {
         title: 'Frontend Development',
         icons: [
-          <FaHtml5 />,
-          <FaCss3 />,
-          <FaJs />,
-          <FaReact />,
-          <SiNextdotjs />,
-          <SiFramer />,
-          <FaWordpress />,
+          <FaHtml5 key="FaHtml5" />,
+          <FaCss3 key="FaCss3" />,
+          <FaJs key="FaJs" />,
+          <FaReact key="FaReact" />,
+          <SiNextdotjs key="SiNextdotjs" />,
+          <SiFramer key="SiFramer" />,
+          <FaWordpress key="FaWordpress" />,
         ],
         text: ['Angular, RxJS','Ionic ' , 'React , Nextjs' , 'Vuejs ' , 'HTML, CSS']
       },
       {
         title: 'Backend & ORM',
-        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        icons: [<FaFigma key="FaFigma-backend" />, <SiAdobexd key="SiAdobexd-backend" />, <SiAdobephotoshop key="SiAdobephotoshop-backend" />],
         text: ['Java,J2EE, Spring Boot' , 'REST API Development']
       },
       {
         title: 'Databases',
-        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        icons: [<FaFigma key="FaFigma-db" />, <SiAdobexd key="SiAdobexd-db" />, <SiAdobephotoshop key="SiAdobephotoshop-db" />],
         text: ['PostgreSQL, MySQL']
       },
       {
         title: 'Version Control & CI/CD',
-        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        icons: [<FaFigma key="FaFigma-vc" />, <SiAdobexd key="SiAdobexd-vc" />, <SiAdobephotoshop key="SiAdobephotoshop-vc" />],
         text: ['Git, SVN' , 'Jenkins']
       },
       {
         title: 'Project Management Tools',
-        icons: [<FaFigma />, <SiAdobexd />, <SiAdobephotoshop />],
+        icons: [<FaFigma key="FaFigma-pm" />, <SiAdobexd key="SiAdobexd-pm" />, <SiAdobephotoshop key="SiAdobephotoshop-pm" />],
         text: ['Java,J2EE, Spring Boot' , 'REST API Development']
       },
     ],
@@ -163,7 +163,7 @@ const About = () => {
             With nearly seven years of experience in mobile application development, web development and both frontend I bring strong technical expertise to the table. I excel in software
             system debugging and troubleshooting, ensuring smooth and efficient performance. Passionate about continuous
             learning, I stay updated with industry trends to deliver innovative solutions. I am confident that my skills,
-            knowledge, and hands-on experience will contribute significantly to your company's ongoing success.Let's create something extraordinary together!
+            knowledge, and hands-on experience will contribute significantly to your company&apos;s ongoing success.Let&apos;s create something extraordinary together!
           </motion.p>
         </div>
         {/* Info */}
@@ -196,22 +196,22 @@ const About = () => {
                   <div className='font-light md:mb-0'>{info.title}</div>
                   {
                     info.name &&  (
-                      <div className='items-center text-white/60' >
+                      <div key={`name-${infoIndex}`} className='items-center text-white/60' >
                         <li>{info.name}</li> 
                       </div>
                     )
                   }
                   {
                     info.stage && (
-                      <div className='items-center text-white/60' >
+                      <div key={`stage-${infoIndex}`} className='items-center text-white/60' >
                         <li>{info.stage}</li>
                       </div>
                     )
                   }
                   <div className=' gap-y-4'>
-                    { info.text && info.text.map((text, iconIndex) => {
+                    { info.text && info.text.map((text, textIndex) => {
                       return (
-                        <div key={iconIndex} className='text-sm text-white'>
+                        <div key={textIndex} className='text-sm text-white'>
                          <li>{text}</li> 
                         </div>
                       )

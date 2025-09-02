@@ -12,10 +12,35 @@ const Contact = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleMailtoClick = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:wuttyee1910@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Dear Wutt Yee Win, \n\n ${message}`)}`;
-    window.location.href = mailtoLink;
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, subject, message }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log('Email sent successfully:', data.message);
+        // Optionally clear the form after successful submission
+        setName('');
+        setSubject('');
+        setMessage('');
+        alert('Your message has been sent!');
+      } else {
+        console.error('Error sending email:', data.message);
+        alert(`Failed to send message: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    }
   };
 
   return (
@@ -30,7 +55,7 @@ const Contact = () => {
             animate="show" 
             exit="hidden"
             className='text-4xl font-bold mb-6'>
-            Let's <span className='text-accent'>connect.</span>
+            Let&apos;s <span className='text-accent'>connect.</span>
           </motion.h2>
           <motion.form 
           variants={fadeIn('up', 0.4)} 
@@ -44,14 +69,14 @@ const Contact = () => {
             </div>
             <input type='text' placeholder='subject' className='input' value={subject} onChange={(e) => setSubject(e.target.value)} />
             <textarea className='textarea' placeholder='message' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-            <a onClick={handleMailtoClick} className='btn rounded-full border border-white/50 max-w-[170px]
+            <button type="submit" onClick={handleSubmit} className='btn rounded-full border border-white/50 max-w-[170px]
             px-8 transition-all duration-300 flex items-center justify-center 
             overflow-hidden hover:border-accent group'>
               <span className='group-hover:-translate-y-[120%] group-hover:opacity-0 transition-all duration-500 '>
-                Let's talk </span> 
+                Let&apos;s talk </span> 
               <BsArrowRight className='-translate-y-[120%] opacity-0 group-hover:flex group-hover:-translate-y-0
               group-hover:opacity-100 transition-all duration-300 absolute text-[22px]' />
-            </a>
+            </button>
           </motion.form>
         </div>
       </div>
